@@ -16,10 +16,7 @@ require("datatables.net-bs4");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component(
-    "example-component",
-    require("./components/ExampleComponent.vue")
-);
+// Vue.component("select2", require("./components/Select2.vue"));
 
 const app = new Vue({
     el: "#app"

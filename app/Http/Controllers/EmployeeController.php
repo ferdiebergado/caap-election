@@ -6,11 +6,13 @@ use App\Employee;
 use Illuminate\Http\Request;
 use App\Helpers\RequestParser;
 use App\Helpers\RequestCriteria;
+use App\Helpers\DataTableHelper;
 
 class EmployeeController extends Controller
 {
     use RequestParser;
     use RequestCriteria;
+    use DataTableHelper;
 
     protected $indexroute = 'employees.index';
 
@@ -21,22 +23,17 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $request = app()->make('request');
-        $this->validate($request, [
-            'length' => [
-                'integer',
-                \Illuminate\Validation\Rule::in(config('app.perPageRange'))
-            ],
-            'sortBy' => 'string|nullable',
-            'orderByMulti' => 'string|nullable'
-        ]);
-        $perPage = $this->getRequestLength($request);
-        $employees = $this->apply(app()->make('App\Employee'), $request);
-        $employees = $employees->with('office')->paginate($perPage);
+        $data = Employee::orderBy('lastname')->orderBy('firstname')->get();
+        if (request()->has('length')) {
+            $employees = $this->datatablePaginate('App\Employee', ['office']);
+            $draw = $employees['draw'];
+            $data = $employees['data'];
+        }
+
         if (request()->wantsJson()) {
             return response()->json([
-                'draw' => $request->draw,
-                'data' => $employees,
+                'draw' => $draw ?? null,
+                'data' => $data,
             ]);
         }
         $route = $this->indexroute;
@@ -110,8 +107,9 @@ class EmployeeController extends Controller
             'firstname' => 'required'
         ]);
 
-        $employee = Employee::update($request->all());
-        return view('employee.index');
+        $employee->update($request->all());
+        $route = $this->indexroute;
+        return view('employee.index', compact('route'));
     }
 
     /**

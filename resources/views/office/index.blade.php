@@ -56,7 +56,7 @@ offices-table
 
 @slot('columns')
 { name: 'id', title: 'ID', data: 'id', width: '5%' },
-{ name: 'name', title: 'name', data: 'name', width: '80%' },
+{ name: 'name', title: 'Name', data: 'name', width: '80%' },
 { title: 'Task(s)', data: 'id', searchable: false, orderable: false, width: '15%' }
 @endslot
 

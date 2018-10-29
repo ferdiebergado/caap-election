@@ -17,7 +17,7 @@ trait DataTableHelper
         ]);
         $perPage = $this->getRequestLength($request);
         $model = $this->apply(app()->make($model), $request);
-        $data['model'] = $model->with($with)->paginate($perPage);
+        $data['data'] = $model->with($with)->paginate($perPage);
         $data['draw'] = $request->draw;
         return $data;
     }

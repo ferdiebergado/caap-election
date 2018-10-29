@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use \Illuminate\Support\Facades\View;
+
+class ViewComposerServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        View::composer(
+            'employee.partial',
+            'App\Http\ViewComposers\OfficeComposer'
+        );
+        // View::composer(
+        //     'paxform',
+        //     'App\Http\ViewComposers\CurrentEventPaxIdsComposer'
+        // );
+    }
+
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+}

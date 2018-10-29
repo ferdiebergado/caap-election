@@ -48,30 +48,36 @@
                             @endif
                         </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('employees.index') }}"><i class="fa fa-users"></i> Employee</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('offices.index') }}"><i class="fa fa-building"></i> Office</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('elections.index') }}"><i class="fa fa-calendar-alt"></i> Election</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('candidates.index') }}"><i class="fa fa-running"></i> Candidate</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('positions.index') }}"><i class="fa fa-chair"></i> Position</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('votes.index') }}"><i class="fa fa-pen-nib"></i> Vote</a>
-                        </li>                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-users"></i> Voters
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('employees.index') }}"><i class="fa fa-users"></i> Employees</a>
+                                <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="fa fa-building"></i> Offices</a>
+                            </div>
+                        </li>               
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-calendar-alt"></i> Elections
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('elections.index') }}"><i class="fa fa-calendar-alt"></i> Elections</a>
+                                <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="fa fa-running"></i> Candidates</a>
+                                <a class="dropdown-item" href="{{ route('positions.index') }}"><i class="fa fa-chair"></i> Positions</a>          
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('votes.index') }}"><i class="fa fa-pen-nib"></i> Votes</a>
+                            </div>
+                        </li>                                                     
+                        
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Profile</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

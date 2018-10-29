@@ -23,17 +23,21 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = $this->datatablePaginate('App\Office');
+        $data = Office::orderBy('name')->get(['id', 'name']);
+        if (request()->has('length')) {
+            $offices = $this->datatablePaginate('App\Office', ['employees']);
+            $draw = $offices['draw'];
+            $data = $offices['data'];
+        }
 
         if (request()->wantsJson()) {
             return response()->json([
-                'draw' => $offices['draw'],
-                'data' => $offices['model'],
+                'draw' => $draw ?? null,
+                'data' => $data,
             ]);
         }
         $route = $this->indexroute;
-        $offices = $offices['model'];
-        return view('office.index', compact('offices', 'route'));
+        return view('office.index', compact('data', 'route'));
     }
 
     /**
@@ -43,7 +47,9 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        //
+        $office = new Office();
+        $route = route('offices.store');
+        return view('office.partial', compact('office', 'route'));
     }
 
     /**
@@ -54,7 +60,13 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $office = Office::create($request->all());
+        $route = $this->indexroute;
+        return view('office.index', compact('route'));
     }
 
     /**
@@ -65,7 +77,7 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
-        //
+        return view('office.show', compact('office'));
     }
 
     /**
@@ -76,7 +88,8 @@ class OfficeController extends Controller
      */
     public function edit(Office $office)
     {
-        //
+        $route = route('offices.update', ['office' => $office]);
+        return view('office.partial', compact('office', 'route'));
     }
 
     /**
@@ -88,7 +101,13 @@ class OfficeController extends Controller
      */
     public function update(Request $request, Office $office)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $office->update($request->all());
+        $route = $this->indexroute;
+        return view('office.index', compact('route'));
     }
 
     /**
@@ -99,6 +118,7 @@ class OfficeController extends Controller
      */
     public function destroy(Office $office)
     {
-        //
+        $office->delete();
+        return redirect()->back();
     }
 }

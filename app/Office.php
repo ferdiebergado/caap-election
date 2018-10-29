@@ -2,13 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Employee;
+use App\BaseModel;
 
-class Office extends Model
+class Office extends BaseModel
 {
-    public function employee()
+    protected $fillable = [
+        'name'
+    ];
+
+    protected $searchable = [
+        'name'
+    ];
+
+    public function employees()
     {
-        return $this->hasOne(Employee::class);
+        return $this->hasMany(Employee::class);
     }
 }

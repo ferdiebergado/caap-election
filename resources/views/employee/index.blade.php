@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1">Employees</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-users"></i> Employees</h5>
                 </div>
                 <div class="col-6">
                     <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route('employees.create') }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
@@ -59,7 +59,7 @@ employees-table
 { name: 'lastname', title: 'Lastname', data: 'lastname', width: '15%' },
 { name: 'firstname', title: 'Firstname', data: 'firstname', width: '20%' },
 { name: 'middlename', title: 'Middlename', data: 'middlename', width: '15%' },
-{ name: 'office', title: 'Office', data: 'office', width: '30%' },
+{ name: 'office.name', title: 'Office', data: 'office.name', width: '30%' },
 { title: 'Task(s)', data: 'id', searchable: false, orderable: false, width: '15%' }
 @endslot
 

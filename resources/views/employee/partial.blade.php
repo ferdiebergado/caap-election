@@ -61,15 +61,11 @@
                             <label for="office_id" class="col-md-4 col-form-label text-md-right">Office</label>
                             
                             <div class="col-md-6">
-                                <select id="office_id" class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}" name="office_id">
-                                    <option value="">Select an office</option>
-                                </select>
-                                
-                                @if ($errors->has('office_id'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('office_id') }}</strong>
-                                </span>
-                                @endif
+                                @component('select', ['datasource' => $offices, 'value' => old('office_id', optional($employee)->office_id)])
+                                @slot('name')
+                                office_id
+                                @endslot
+                                @endcomponent                            
                             </div>
                         </div>
                         
