@@ -21,3 +21,7 @@ require("datatables.net-bs4");
 const app = new Vue({
     el: "#app"
 });
+
+$("#divAlertSuccess")
+    .delay(4000)
+    .fadeOut(600);

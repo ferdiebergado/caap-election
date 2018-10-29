@@ -29213,6 +29213,8 @@ var app = new Vue({
   el: "#app"
 });
 
+$("#divAlertSuccess").delay(4000).fadeOut(600);
+
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {

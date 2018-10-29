@@ -66,6 +66,7 @@ class OfficeController extends Controller
 
         $office = Office::create($request->all());
         $route = $this->indexroute;
+        session()->flash('status', 'New Office successfully recorded in the system.');
         return view('office.index', compact('route'));
     }
 
@@ -107,6 +108,7 @@ class OfficeController extends Controller
 
         $office->update($request->all());
         $route = $this->indexroute;
+        session()->flash('status', 'Office data successfully updated.');
         return view('office.index', compact('route'));
     }
 
@@ -119,6 +121,7 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         $office->delete();
+        session()->flash('status', 'Office data successfully deleted.');
         return redirect()->back();
     }
 }

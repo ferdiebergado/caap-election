@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('lastname');
             $table->string('firstname');
             $table->string('middlename')->nullable()->default(null);
-            $table->integer('office_id')->nullable()->default(null);
+            $table->unsignedInteger('office_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

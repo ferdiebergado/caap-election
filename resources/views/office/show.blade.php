@@ -47,9 +47,9 @@
                                     <tbody>
                                         @forelse ($office->employees as $employee)
                                         <tr>
-                                            <td scope="row">{{ $office->employee->lastname }}</td>
-                                            <td scope="row">{{ $office->employee->firstname }}</td>
-                                            <td scope="row">{{ $office->employee->middlename }}</td>
+                                            <td scope="row">{{ $employee->lastname }}</td>
+                                            <td scope="row">{{ $employee->firstname }}</td>
+                                            <td scope="row">{{ $employee->middlename }}</td>
                                         </tr>                                          
                                         @empty
                                         <tr>
