@@ -25,9 +25,8 @@ class CandidateController extends Controller
     public function create()
     {
         $candidate = new Candidate();
-        $method = 'POST';
         $route = route('candidates.store');
-        return view('candidate.partial', compact('candidate', 'method', 'route'));
+        return view('candidate.partial', compact('candidate', 'route'));
     }
 
     /**
@@ -38,7 +37,13 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'lastname' => 'required',
+            'firstname' => 'required'
+        ]);
+
+        $employee = Employee::create($request->all());
+        return view('employee.index');
     }
 
     /**

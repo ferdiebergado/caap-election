@@ -8,8 +8,12 @@
                 <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} Candidate</div>
 
                 <div class="card-body">
-                    <form method="{{ $method }}" action="{{ $route }}">
+                    <form method="POST" action="{{ $route }}">
                         @csrf
+
+                        @if (Route::is('candidates.edit'))
+                            {{ method_field('PUT') }}                            
+                        @endif
 
                         <div class="form-group row">
                             <label for="election" class="col-md-4 col-form-label text-md-right">Election</label>

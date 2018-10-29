@@ -4,6 +4,7 @@ namespace App;
 
 use App\Vote;
 use App\BaseModel;
+use App\Office;
 
 class Employee extends BaseModel
 {
@@ -11,8 +12,18 @@ class Employee extends BaseModel
         'lastname',
         'firstname',
         'middlename',
-        'office'
     ];
+
+    protected $searchable = [
+        'lastname',
+        'firstname',
+        'middlename',
+    ];
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
 
     public function votes()
     {

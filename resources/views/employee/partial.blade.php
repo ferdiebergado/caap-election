@@ -6,72 +6,79 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} Employee</div>
-
+                
                 <div class="card-body">
-                    <form method="{{ $method }}" action="{{ $route }}">
+                    <form method="POST" action="{{ $route }}">
                         @csrf
-
+                        
+                        @if (Route::is('employees.edit'))
+                        {{ method_field('PUT') }}                            
+                        @endif
+                        
                         <div class="form-group row">
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">Lastname</label>
-
+                            
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname', optional($employee)->lastname) }}" required autofocus>
-
+                                
                                 @if ($errors->has('lastname'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('lastname') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('lastname') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="firstname" class="col-md-4 col-form-label text-md-right">Firstname</label>
-
+                            
                             <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('firstname', optional($employee)->firstname) }}" required autofocus>
-
+                                <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="firstname" value="{{ old('firstname', optional($employee)->firstname) }}" required>
+                                
                                 @if ($errors->has('firstname'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('firstname') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('firstname') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="middlename" class="col-md-4 col-form-label text-md-right">Middle Name</label>
-
+                            
                             <div class="col-md-6">
                                 <input id="middlename" type="text" class="form-control{{ $errors->has('middlename') ? ' is-invalid' : '' }}" name="middlename" value="{{ old('middlename', optional($employee)->middlename) }}" required autofocus>
-
+                                
                                 @if ($errors->has('middlename'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('middlename') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('middlename') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
-                            <label for="office" class="col-md-4 col-form-label text-md-right">Office</label>
-
+                            <label for="office_id" class="col-md-4 col-form-label text-md-right">Office</label>
+                            
                             <div class="col-md-6">
-                                <select id="office" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="office" required autofocus></select>
-
-                                @if ($errors->has('office'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('office') }}</strong>
-                                    </span>
+                                <select id="office_id" class="form-control{{ $errors->has('office_id') ? ' is-invalid' : '' }}" name="office_id">
+                                    <option value="">Select an office</option>
+                                </select>
+                                
+                                @if ($errors->has('office_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('office_id') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
-
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary float-right">
-                                    SAVE
+                                    <i class="fa fa-save"></i> SAVE
                                 </button>
+                                <a class="btn float-right" href="javascript:void();" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</a>                                
                             </div>
                         </div>
                     </form>
