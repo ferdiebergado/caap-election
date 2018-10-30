@@ -15,6 +15,8 @@ class Candidate extends BaseModel
         'position_id'
     ];
 
+    protected $searchable = [];
+
     public function voter()
     {
         return $this->belongsTo(Voter::class);

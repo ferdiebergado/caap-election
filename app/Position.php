@@ -11,6 +11,10 @@ class Position extends BaseModel
         'name'
     ];
 
+    protected $searchable = [
+        'name'
+    ];
+
     public function candidates()
     {
         return $this->hasMany(Candidate::class);

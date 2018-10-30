@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Candidate;
+use App\BaseModel;
 
-class Election extends Model
+class Election extends BaseModel
 {
     protected $fillable = [
         'title',
@@ -15,6 +15,10 @@ class Election extends Model
 
     protected $casts = [
         'active' => 'boolean'
+    ];
+
+    protected $searchable = [
+        'title'
     ];
 
     public function candidates()
