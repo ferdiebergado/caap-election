@@ -1,14 +1,18 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
+// @import url("https://fonts.googleapis.com/css?family=Nunito");
+@import "~nunito-fontface/css/nunito/sass/nunito-fontface-black.scss";
+// @import "~roboto-fontface/css/roboto/sass/roboto-fontface.scss";
 
 // Variables
 @import "variables";
 
 // Bootstrap
+// @import "~bootswatch/dist/materia/variables";
 @import "~bootstrap/scss/bootstrap";
+// @import "~bootswatch/dist/materia/bootswatch";
 
 .navbar-laravel {
-    background-color: #fff;
+    // background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -17,5 +21,8 @@
 // Datatables
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 @import "../js/jquery-datatable/jquery.dataTables.css";
-// @import "../jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css";
 @import "../js/jquery-datatable/extensions/dataTables.searchHighlight.css";
+
+@import "~flatpickr/dist/flatpickr.min.css";
+
+@import "~bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css";

@@ -12,6 +12,7 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
+        "clean-webpack-plugin": "^0.1.19",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
@@ -21,8 +22,11 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.4.2",
+        "bootstrap4c-custom-switch": "^1.0.11",
         "datatables.net": "^1.10.19",
         "datatables.net-bs4": "^1.10.19",
-        "jquery-highlight": "^3.4.0"
+        "flatpickr": "^4.5.2",
+        "jquery-highlight": "^3.4.0",
+        "nunito-fontface": "^0.7.3"
     }
 }

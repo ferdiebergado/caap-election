@@ -9,6 +9,7 @@ require("./bootstrap");
 window.Vue = require("vue");
 require("datatables.net");
 require("datatables.net-bs4");
+const flatpickr = require("flatpickr");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

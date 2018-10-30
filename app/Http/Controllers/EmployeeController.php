@@ -68,7 +68,7 @@ class EmployeeController extends Controller
         $employee = Employee::create($request->all());
         $route = $this->indexroute;
         session()->flash('status', 'New voter information was successfully recorded in the system.');
-        return view('employee.index', compact('route'));
+        return redirect()->route($route)->with(compact('route'));
     }
 
     /**
@@ -111,7 +111,7 @@ class EmployeeController extends Controller
         $employee->update($request->all());
         $route = $this->indexroute;
         session()->flash('status', 'Voter information was successfully updated.');
-        return view('employee.index', compact('route'));
+        return redirect()->route($route)->with(compact('route'));
     }
 
     /**

@@ -1,4 +1,18 @@
 const mix = require("laravel-mix");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+
+// webpack config
+mix.webpackConfig({
+    plugins: [
+        new CleanWebpackPlugin([
+            "public/js",
+            "public/css",
+            "public/img",
+            "public/fonts",
+            "public/svg"
+        ])
+    ]
+});
 
 /*
  |--------------------------------------------------------------------------
@@ -14,8 +28,6 @@ const mix = require("laravel-mix");
 mix.js("resources/js/app.js", "public/js")
     .scripts(
         [
-            // "resources/jquery-datatable/jquery.dataTables.js",
-            // "resources/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js",
             "resources/js/jquery-datatable/extensions/export/dataTables.buttons.min.js",
             "resources/js/jquery-datatable/extensions/export/buttons.flash.min.js",
             "resources/js/jquery-datatable/extensions/export/jszip.min.js",

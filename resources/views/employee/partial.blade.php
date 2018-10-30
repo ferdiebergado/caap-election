@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} Employee</div>
                 
@@ -19,7 +19,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">Lastname</label>
                             
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname', optional($employee)->lastname) }}" required autofocus>
+                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" placeholder="Lastname" value="{{ old('lastname', optional($employee)->lastname) }}" required autofocus>
                                 
                                 @if ($errors->has('lastname'))
                                 <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                             <label for="firstname" class="col-md-4 col-form-label text-md-right">Firstname</label>
                             
                             <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="firstname" value="{{ old('firstname', optional($employee)->firstname) }}" required>
+                                <input id="firstname" type="text" class="form-control{{ $errors->has('firstname') ? ' is-invalid' : '' }}" name="firstname" placeholder="Firstname" value="{{ old('firstname', optional($employee)->firstname) }}" required>
                                 
                                 @if ($errors->has('firstname'))
                                 <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                             <label for="middlename" class="col-md-4 col-form-label text-md-right">Middle Name</label>
                             
                             <div class="col-md-6">
-                                <input id="middlename" type="text" class="form-control{{ $errors->has('middlename') ? ' is-invalid' : '' }}" name="middlename" value="{{ old('middlename', optional($employee)->middlename) }}" required autofocus>
+                                <input id="middlename" type="text" class="form-control{{ $errors->has('middlename') ? ' is-invalid' : '' }}" name="middlename" placeholder="Middlename" value="{{ old('middlename', optional($employee)->middlename) }}" required autofocus>
                                 
                                 @if ($errors->has('middlename'))
                                 <span class="invalid-feedback" role="alert">
