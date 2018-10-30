@@ -1,39 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
+
+@php
+    $model = 'candidate';
+    $plural = str_plural($model);
+@endphp
+
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} Candidate</div>
-
+                <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} {{ ucfirst($plural) }}</div>
+                
                 <div class="card-body">
                     <form method="POST" action="{{ $route }}">
                         @csrf
-
-                        @if (Route::is('candidates.edit'))
-                            {{ method_field('PUT') }}                            
-                        @endif
+                        
+                        @if (Route::is("$plural.edit"))
+                        {{ method_field('PUT') }}                            
+                        @endif                                               
+                        
+                        <div class="form-group row">
+                            <label for="election_id" class="col-md-4 col-form-label text-md-right">Election</label>
+                            
+                            <div class="col-md-6">
+                                @component('select', ['datasource' => $elections, 'value' => old('election_id', optional($candidate)->election_id)])
+                                @slot('name')
+                                election_id
+                                @endslot       
+                                required                   
+                                @endcomponent                            
+                            </div>
+                        </div>
 
                         <div class="form-group row">
-                            <label for="election" class="col-md-4 col-form-label text-md-right">Election</label>
-
+                            <label for="voter_id" class="col-md-4 col-form-label text-md-right">Name</label>
+                            
                             <div class="col-md-6">
-                                <select id="election" class="form-control{{ $errors->has('election') ? ' is-invalid' : '' }}" name="election" required autofocus></select>
+                                @component('select', ['datasource' => $voters, 'value' => old('voter_id', optional($candidate)->voter_id), 'field' => 'fullname'])
+                                @slot('name')
+                                voter_id
+                                @endslot
+                                required            
+                                @endcomponent                            
+                            </div>
+                        </div>
 
-                                @if ($errors->has('election'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('election') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="form-group row">
+                            <label for="position_id" class="col-md-4 col-form-label text-md-right">Position</label>
+                            
+                            <div class="col-md-6">
+                                @component('select', ['datasource' => $positions, 'value' => old('position_id', optional($candidate)->position_id)])
+                                @slot('name')
+                                position_id
+                                @endslot
+                                required            
+                                @endcomponent                            
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary float-right">
-                                    SAVE
+                                    <i class="fa fa-save"></i> SAVE
                                 </button>
+                                <a class="btn float-right" href="javascript:void();" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</a>                                
                             </div>
                         </div>
                     </form>

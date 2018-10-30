@@ -5,8 +5,9 @@ namespace App;
 use App\Vote;
 use App\BaseModel;
 use App\Office;
+use App\Candidate;
 
-class Employee extends BaseModel
+class Voter extends BaseModel
 {
     protected $fillable = [
         'lastname',
@@ -53,5 +54,10 @@ class Employee extends BaseModel
     public function votes()
     {
         return $this->hasMany(Vote::class);
+    }
+
+    public function candidate()
+    {
+        return $this->hasMany(Candidate::class);
     }
 }

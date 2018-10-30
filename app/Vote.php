@@ -2,16 +2,16 @@
 
 namespace App;
 
-use App\Employee;
 use App\Election;
 use App\Candidate;
 use App\BaseModel;
+use App\Voter;
 
 class Vote extends BaseModel
 {
-    public function employee()
+    public function voter()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Voter::class);
     }
 
     public function election()

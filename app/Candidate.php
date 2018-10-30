@@ -2,16 +2,22 @@
 
 namespace App;
 
-use App\Employee;
+use App\Voter;
 use App\Election;
 use App\BaseModel;
 use App\Position;
 
 class Candidate extends BaseModel
 {
-    public function employee()
+    protected $fillable = [
+        'election_id',
+        'voter_id',
+        'position_id'
+    ];
+
+    public function voter()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Voter::class);
     }
 
     public function election()

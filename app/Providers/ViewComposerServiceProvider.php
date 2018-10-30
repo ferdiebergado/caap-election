@@ -15,13 +15,21 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'employee.partial',
+            'voter.partial',
             'App\Http\ViewComposers\OfficeComposer'
         );
-        // View::composer(
-        //     'paxform',
-        //     'App\Http\ViewComposers\CurrentEventPaxIdsComposer'
-        // );
+        View::composer(
+            'candidate.partial',
+            'App\Http\ViewComposers\ElectionComposer'
+        );
+        View::composer(
+            'candidate.partial',
+            'App\Http\ViewComposers\VoterComposer'
+        );
+        View::composer(
+            'candidate.partial',
+            'App\Http\ViewComposers\PositionComposer'
+        );
     }
 
     /**

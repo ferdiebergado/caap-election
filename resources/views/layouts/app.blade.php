@@ -53,7 +53,7 @@
                                 <i class="fa fa-users"></i> Voters
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('employees.index') }}"><i class="fa fa-users"></i> Employees</a>
+                                <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="fa fa-users"></i> Voters</a>
                                 <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="fa fa-building"></i> Offices</a>
                             </div>
                         </li>               

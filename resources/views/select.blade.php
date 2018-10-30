@@ -1,4 +1,7 @@
-<select class="form-control {{ $errors->has('{$name}') ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" style="width: 100%;">
+@php
+    $attr = $field ?? 'name';
+@endphp
+<select class="form-control {{ $errors->has('{$name}') ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" style="width: 100%;" {{ $slot }}>
     <option value="">Select</option>
     @foreach ($datasource as $data)
     @php
@@ -9,7 +12,7 @@
     $selected = 'selected'
     @endphp        
     @endif
-    <option value="{{ $data->id }}" {{ $selected }}>{{ $data->name }}</option>
+    <option value="{{ $data->id }}" {{ $selected }}>{{ $data->{$attr} }}</option>
     @endforeach
 </select> 
 

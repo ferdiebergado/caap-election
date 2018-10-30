@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Employee;
+use App\Voter;
 use App\BaseModel;
 
 class Office extends BaseModel
@@ -15,8 +15,8 @@ class Office extends BaseModel
         'name'
     ];
 
-    public function employees()
+    public function voters()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(Voter::class);
     }
 }

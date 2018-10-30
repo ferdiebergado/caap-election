@@ -2,15 +2,21 @@
 
 @section('content')
 
+@php
+    $model = 'office';
+    $plural = str_plural($model);
+@endphp
+
 <div class="card">
     <div class="card-header">
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1">Office</h5>
+                    <h5 class="card-title mt-2 mb-1">{{ ucfirst($model) }}</h5>
                 </div>
                 <div class="col-6">
-                    <span class="float-right"><a name="add" id="add" class="btn btn-primary" href="{{ route('offices.edit', ['office' => $office->id]) }}" role="button"><i class="fa fa-edit"></i> Edit</a></span>
+                    <span class="float-right"><a name="add" id="add" class="btn btn-primary" href="{{ route("$plural.edit", ['office' => $office->id]) }}" role="button"><i class="fa fa-edit"></i> Edit</a></span>
+                    <span class="float-right"><a name="add" id="add" class="btn btn-secondary mr-2" href="{{ route("$plural.index") }}" role="button"><i class="fa fa-list"></i> List</a></span> 
                 </div>
             </div>
         </div>
@@ -33,9 +39,9 @@
                             </div>
                         </div>  
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Employee(s)</label>
+                            <label class="col-sm-2 col-form-label">Voter(s)</label>
                             <div class="col-sm-10">
-                                @isset(optional($office)->employees)
+                                @isset(optional($office)->voters)
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -45,27 +51,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($office->employees as $employee)
+                                        @forelse ($office->voters as $voter)
                                         <tr>
-                                            <td scope="row">{{ $employee->lastname }}</td>
-                                            <td scope="row">{{ $employee->firstname }}</td>
-                                            <td scope="row">{{ $employee->middlename }}</td>
+                                            <td scope="row">{{ $voter->lastname }}</td>
+                                            <td scope="row">{{ $voter->firstname }}</td>
+                                            <td scope="row">{{ $voter->middlename }}</td>
                                         </tr>                                          
                                         @empty
                                         <tr>
-                                            <td>No employee(s).</td>
+                                            <td>No voter(s).</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
                                 </table>                                
                                 @endisset                                
                             </div>
-                        </div>                                                                          
-                        <div class="form-group row mb-0">
-                            <div class="col-12">
-                                <a class="btn float-right" href="javascript:void();" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</a>                                
-                            </div>
-                        </div>                                           
+                        </div>                                                                                                                
                     </form>                    
                 </div>
             </div>

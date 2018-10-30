@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
+use App\Voter;
 use Illuminate\Http\Request;
 use App\Helpers\RequestParser;
 use App\Helpers\RequestCriteria;
 use App\Helpers\DataTableHelper;
 
-class EmployeeController extends Controller
+class VoterController extends Controller
 {
     use RequestParser;
     use RequestCriteria;
     use DataTableHelper;
 
-    protected $indexroute = 'employees.index';
+    protected $indexroute = 'voters.index';
 
     /**
      * Display a listing of the resource.
@@ -23,11 +23,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = Employee::orderBy('lastname')->orderBy('firstname')->get();
+        $data = Voter::orderBy('lastname')->orderBy('firstname')->get();
         if (request()->has('length')) {
-            $employees = $this->datatablePaginate('App\Employee', ['office']);
-            $draw = $employees['draw'];
-            $data = $employees['data'];
+            $voters = $this->datatablePaginate('App\Voter', ['office']);
+            $draw = $voters['draw'];
+            $data = $voters['data'];
         }
 
         if (request()->wantsJson()) {
@@ -37,7 +37,7 @@ class EmployeeController extends Controller
             ]);
         }
         $route = $this->indexroute;
-        return view('employee.index', compact('employees', 'route'));
+        return view('voter.index', compact('voters', 'route'));
     }
 
     /**
@@ -47,9 +47,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $employee = new Employee();
-        $route = route('employees.store');
-        return view('employee.partial', compact('employee', 'route'));
+        $voter = new Voter();
+        $route = route('voters.store');
+        return view('voter.partial', compact('voter', 'route'));
     }
 
     /**
@@ -65,7 +65,7 @@ class EmployeeController extends Controller
             'firstname' => 'required'
         ]);
 
-        $employee = Employee::create($request->all());
+        $voter = Voter::create($request->all());
         $route = $this->indexroute;
         session()->flash('status', 'New voter information was successfully recorded in the system.');
         return redirect()->route($route)->with(compact('route'));
@@ -74,41 +74,41 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Voter $voter)
     {
-        return view('employee.show', compact('employee'));
+        return view('voter.show', compact('voter'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Voter $voter)
     {
-        $route = route('employees.update', ['employee' => $employee]);
-        return view('employee.partial', compact('employee', 'route'));
+        $route = route('voters.update', ['voter' => $voter]);
+        return view('voter.partial', compact('voter', 'route'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
+     * @param  \App\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, Voter $voter)
     {
         $this->validate($request, [
             'lastname' => 'required',
             'firstname' => 'required'
         ]);
 
-        $employee->update($request->all());
+        $voter->update($request->all());
         $route = $this->indexroute;
         session()->flash('status', 'Voter information was successfully updated.');
         return redirect()->route($route)->with(compact('route'));
@@ -117,12 +117,12 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employee  $employee
+     * @param  \App\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Voter $voter)
     {
-        $employee->delete();
+        $voter->delete();
         session()->flash('status', 'Voter information was successfully deleted.');
         return redirect()->back();
     }

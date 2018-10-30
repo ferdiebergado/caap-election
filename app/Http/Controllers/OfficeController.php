@@ -25,7 +25,7 @@ class OfficeController extends Controller
     {
         $data = Office::orderBy('name')->get(['id', 'name']);
         if (request()->has('length')) {
-            $offices = $this->datatablePaginate('App\Office', ['employees']);
+            $offices = $this->datatablePaginate('App\Office', ['voters']);
             $draw = $offices['draw'];
             $data = $offices['data'];
         }

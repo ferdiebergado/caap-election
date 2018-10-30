@@ -2,15 +2,20 @@
 
 @section('content')
 
+@php
+    $model = 'voter';
+    $plural = str_plural($model);
+@endphp
+
 <div class="card">
     <div class="card-header">
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-users"></i> Employees</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-users"></i> {{ ucfirst($plural) }}</h5>
                 </div>
                 <div class="col-6">
-                    <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route('employees.create') }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
+                    <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route("$plural.create") }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
                 </div>
             </div>
         </div>
@@ -20,13 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table id="employees-table" class="table table-hover table-striped table-condensed dataTable js-exportable"></table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <table id="{{ $plural }}-table" class="table table-hover table-striped table-condensed dataTable js-exportable"></table>
 
 @endsection
 
@@ -39,7 +38,7 @@ $url = route($route, $params ?? array())
 @component('datatablejs')
 
 @slot('datatableid')
-employees-table
+{{ $plural }}-table
 @endslot
 
 @slot('datatableroute')
@@ -72,7 +71,7 @@ employees-table
 { targets: 5,
     render: function(data, type, row) {
         const btnclass = "btn btn-sm btn-flat";
-        const baseurl = "/employees";
+        const baseurl = "/{{ $plural }}";
         let viewurl = `<a class="${btnclass} btn-info text-white" href="${baseurl}/${data}" title="View"><i class="fa fa-eye"></i></a> `;
         let editurl = `<a class="${btnclass} btn-primary" href="${baseurl}/${data}/edit" title="Edit"><i class="fa fa-edit"></i></a> `;
         let delurl = `<form id="del-form-${data}" method="POST" action="${baseurl}/${data}" style="display: inline;">
