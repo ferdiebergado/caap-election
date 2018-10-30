@@ -42,6 +42,7 @@ mix.js("resources/js/app.js", "public/js")
         "public/js/plugins.js"
     )
     .copyDirectory("resources/img", "public/img")
+    .copy("resources/css/nunito-fontface.css", "public/css")
     .sass("resources/sass/app.scss", "public/css");
 
 if (mix.inProduction()) {

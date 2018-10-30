@@ -2,28 +2,28 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Voter;
+use App\Election;
 use \Illuminate\View\View;
 
-class VoterComposer
+class ActiveElectionComposer
 {
     /**
-     * The Voter model.
+     * The Election model.
      *
-     * @var Voter
+     * @var Election
      */
-    protected $voter;
+    protected $election;
 
     /**
      * Create a new profile composer.
      *
-     * @param  Voter  $voter
+     * @param  Election  $election
      * @return void
      */
-    public function __construct(Voter $voter)
+    public function __construct(Election $election)
     {
         // Dependencies automatically resolved by service container...
-        $this->voter = $voter;
+        $this->election = $election;
     }
 
     /**
@@ -34,6 +34,6 @@ class VoterComposer
      */
     public function compose(View $view)
     {
-        $view->with('voters', $this->voter->where('voted', false)->orderBy('lastname')->get());
+        $view->with('active_election', $this->election->where('active', true)->latest()->first());
     }
 }

@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "nunito-Regular";
+    src: url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.eot");
+    src: local("nunito Regular"), local("nunito-Regular"),
+        url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.woff2")
+            format("woff2"),
+        url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.woff")
+            format("woff"),
+        url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.ttf")
+            format("truetype"),
+        url("../fonts/vendor/nunito-fontface/nunito/nunito-Regular.svg#nunito")
+            format("svg");
+}

@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    {{-- <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> --}}
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -48,13 +48,16 @@
                             @endif
                         </li>
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
+                        </li>                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-users"></i> Voters
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="fa fa-users"></i> Voters</a>
                                 <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="fa fa-building"></i> Offices</a>
+                                <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="fa fa-users"></i> Voters</a>
                             </div>
                         </li>               
                         <li class="nav-item dropdown">
@@ -63,8 +66,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('elections.index') }}"><i class="fa fa-calendar-alt"></i> Elections</a>
-                                <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="fa fa-running"></i> Candidates</a>
                                 <a class="dropdown-item" href="{{ route('positions.index') }}"><i class="fa fa-chair"></i> Positions</a>          
+                                <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="fa fa-running"></i> Candidates</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('votes.index') }}"><i class="fa fa-pen-nib"></i> Votes</a>
                             </div>
@@ -95,10 +98,14 @@
         </div>
     </nav>
     
-    <div class="container">
-        
+    <div class="container">        
         <main class="py-4">
             @include('alert')
+            @unless (Route::is('home'))                
+            <p class="lead">
+                <h5>{{ optional($active_election)->title }}</h5>
+            </p>
+            @endunless
             @yield('content')
         </main>
         

@@ -217,4 +217,5 @@ return [
     'perpage' => 10,
     'perPageRange' => ['10', '20', '25', '50', '100'],
     'year' => 2018,
+    'company' => 'Civil Aviation Authority of the Philippines'
 ];
