@@ -10576,3 +10576,29 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.breadcrumb {
+  background: #f8fafc;
+  border: 0px solid whitesmoke;
+  border-radius: 0px;
+}
+
+.breadcrumb li {
+  font-size: 12px;
+}
+
+.breadcrumb a {
+  color: #428bca;
+}
+
+.breadcrumb a:hover {
+  color: #2a6496;
+}
+
+.breadcrumb > .active {
+  color: #999999;
+}
+
+.breadcrumb > li + li:before {
+  color: #cccccc;
+}
+

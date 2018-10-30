@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\BaseModel;
+use App\Vote;
 
 class Position extends BaseModel
 {
@@ -18,5 +19,10 @@ class Position extends BaseModel
     public function candidates()
     {
         return $this->hasMany(Candidate::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
     }
 }

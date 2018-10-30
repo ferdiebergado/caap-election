@@ -8,11 +8,11 @@
     </div>
     @endif
         
-    @if (session('error'))
+    @if (session('error') || session('errors'))
     <div id="divErrors" class="alert alert-danger" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><span><i class="fa fa-ban"></i></span> Error</h4>
-        <h6 id="errorMsg">{!! session('error') !!}</h6>
+        <h6 id="errorMsg">{{  session('error') ?? $errors }}</h6>
     </div>
     @endif
     

@@ -26,3 +26,25 @@
 @import "~flatpickr/dist/flatpickr.min.css";
 
 @import "~bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css";
+
+.breadcrumb {
+    background: $body-bg;
+    border: 0px solid rgba(245, 245, 245, 1);
+    border-radius: 0px;
+}
+.breadcrumb li {
+    font-size: 12px;
+}
+.breadcrumb a {
+    color: rgba(66, 139, 202, 1);
+}
+.breadcrumb a:hover {
+    color: rgba(42, 100, 150, 1);
+}
+.breadcrumb > .active {
+    color: rgba(153, 153, 153, 1);
+}
+.breadcrumb > li + li:before {
+    color: rgba(204, 204, 204, 1);
+    // content: "\002F\00a0";
+}

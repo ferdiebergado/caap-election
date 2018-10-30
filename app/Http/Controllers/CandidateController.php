@@ -94,6 +94,8 @@ class CandidateController extends Controller
         ]);
 
         $data = $this->model::create($request->all());
+        Voter::find($request->position_id)->update(['candidate' => true]);
+
         $route = $this->indexroute;
         session()->flash('status', 'New Candidate successfully recorded in the system.');
         return redirect()->route($route)->with(compact('route'));

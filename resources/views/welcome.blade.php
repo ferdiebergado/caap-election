@@ -78,8 +78,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{ config('app.name') }}
-                </div>
+                    <img src="{{ asset('img/caap.png') }}" class="img-fluid" alt="CAAP Logo">
+                    </div>
+                    <div class="jumbotron">
+                        <h1 class="display-3">{{ config('app.name') }}</h1>
+                        <p class="lead">Civil Aviation Authority of the Philippines</p>
+                        <hr class="my-2">
+                        <p>More info</p>
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" href="http://www.caap.gov.ph" role="button">Visit Website</a>
+                        </p>
+                    </div>
             </div>
         </div>
     </body>

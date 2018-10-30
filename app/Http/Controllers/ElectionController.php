@@ -125,10 +125,12 @@ class ElectionController extends Controller
         DB::beginTransaction();
 
         try {
-            if ($request->active === "on") {
-                Election::where('active', true)->update(['active' => false]);
-                $request->merge(['active' => true]);
+            $active = false;
+            if ($request->filled('active')) {
+                Election::where('active', true)->update(compact('active'));
+                $active = true;
             }
+            $request->merge(compact('active'));
             $election->update($request->all());
         } catch (\Exception $e) {
             DB::rollback();

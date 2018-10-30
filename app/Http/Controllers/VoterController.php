@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\RequestParser;
 use App\Helpers\RequestCriteria;
 use App\Helpers\DataTableHelper;
+use App\Vote;
 
 class VoterController extends Controller
 {
@@ -125,5 +126,19 @@ class VoterController extends Controller
         $voter->delete();
         session()->flash('status', 'Voter information was successfully deleted.');
         return redirect()->back();
+    }
+
+    /**
+     * Show the form for voting.
+     *
+     * @param  \App\Voter  $voter
+     * @return \Illuminate\Http\Response
+     */
+    public function vote(Voter $voter)
+    {
+        $vote = new Vote();
+        $vote->voter_id = $voter->id;
+        $route = route('votes.store');
+        return view('vote.partial', compact('vote', 'route'));
     }
 }

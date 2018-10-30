@@ -19,6 +19,8 @@ class CreateVotersTable extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable()->default(null);
             $table->unsignedInteger('office_id')->nullable()->default(null);
+            $table->boolean('voted')->default(false);
+            $table->boolean('candidate')->default(false);
             $table->timestamps();
         });
     }

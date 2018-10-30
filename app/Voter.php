@@ -22,6 +22,11 @@ class Voter extends BaseModel
         'middlename',
     ];
 
+    protected $casts = [
+        'voted' => 'boolean',
+        'candidate' => 'boolean'
+    ];
+
     protected $appends = [
         'fullname'
     ];
@@ -56,7 +61,7 @@ class Voter extends BaseModel
         return $this->hasMany(Vote::class);
     }
 
-    public function candidate()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class);
     }

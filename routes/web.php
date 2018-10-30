@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/voters/{voter}/vote', 'VoterController@vote')->name('voters.vote');
     Route::resource('voters', 'VoterController');
     Route::resource('offices', 'OfficeController');
     Route::resource('elections', 'ElectionController');
