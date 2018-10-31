@@ -7,6 +7,7 @@ use App\Helpers\RequestParser;
 use App\Helpers\RequestCriteria;
 use App\Helpers\DataTableHelper;
 use App\Candidate;
+use App\Voter;
 
 class CandidateController extends Controller
 {

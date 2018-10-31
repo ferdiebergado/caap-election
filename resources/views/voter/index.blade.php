@@ -86,7 +86,7 @@ $url = route($route, $params ?? array())
         if (row.voted) {
             disabled = 'disabled';
         }
-        voteurl = `<a class="${btnclass} btn-secondary text-white ${disabled}" href="${baseurl}/${data}/vote" title="Vote"><i class="fa fa-pen-fancy"></i></a> `;        
+        let voteurl = `<a class="${btnclass} btn-secondary text-white ${disabled}" href="${baseurl}/${data}/vote" title="Vote"><i class="fa fa-pen-fancy"></i></a> `;
         let viewurl = `<a class="${btnclass} btn-info text-white" href="${baseurl}/${data}" title="View"><i class="fa fa-eye"></i></a> `;
         let editurl = `<a class="${btnclass} btn-primary" href="${baseurl}/${data}/edit" title="Edit"><i class="fa fa-edit"></i></a> `;
         let delurl = `<form id="del-form-${data}" method="POST" action="${baseurl}/${data}" style="display: inline;">

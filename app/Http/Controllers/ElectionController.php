@@ -155,4 +155,19 @@ class ElectionController extends Controller
         session()->flash('status', 'Election information successfully deleted.');
         return redirect()->back();
     }
+
+    /**
+     * Activate the election.
+     *
+     * @param  \App\Election  $election
+     * @return \Illuminate\Http\Response
+     */
+    public function activate(Election $election)
+    {
+        Election::where('active', true)->update(['active' => false]);
+        $election->update(['active' => true]);
+        session()->flash('status', 'Election successfully activated.');
+        $route = $this->indexroute;
+        return redirect()->route($route)->with(compact('route'));
+    }
 }

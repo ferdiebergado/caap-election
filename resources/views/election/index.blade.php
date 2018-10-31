@@ -2,15 +2,20 @@
 
 @section('content')
 
+@php
+    $model = 'election';
+    $plural = str_plural($model);
+@endphp
+
 <div class="card">
     <div class="card-header">
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-calendar-alt"></i> Elections</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-calendar-alt"></i> {{ ucfirst($plural) }}</h5>
                 </div>
                 <div class="col-6">
-                    <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route('elections.create') }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
+                    <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route("$plural.create") }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
                 </div>
             </div>
         </div>
@@ -20,7 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
-                        <table id="elections-table" class="table table-hover table-striped table-condensed dataTable js-exportable"></table>
+                        <table id="{{ $plural }}-table" class="table table-hover table-striped table-condensed dataTable js-exportable"></table>
                     </div>
                 </div>
             </div>
@@ -39,7 +44,7 @@ $url = route($route, $params ?? array())
 @component('datatablejs')
 
 @slot('datatableid')
-elections-table
+{{ $plural }}-table
 @endslot
 
 @slot('datatableroute')
@@ -56,10 +61,10 @@ elections-table
 
 @slot('columns')
 { name: 'id', title: 'ID', data: 'id', width: '5%' },
-{ name: 'title', title: 'Title', data: 'title', width: '50%' },
+{ name: 'title', title: 'Title', data: 'title', width: '45%' },
 { name: 'date', title: 'Date', data: 'date', width: '20%' },
 { name: 'active', title: 'Active', data: 'active', width: '10%' },
-{ title: 'Task(s)', data: 'id', searchable: false, orderable: false, width: '15%' }
+{ title: 'Task(s)', data: 'id', searchable: false, orderable: false, width: '20%' }
 @endslot
 
 { targets: 0,
@@ -80,7 +85,12 @@ elections-table
 { targets: 4,
     render: function(data, type, row) {
         const btnclass = "btn btn-sm btn-flat";
-        const baseurl = "/elections";
+        const baseurl = "/{{ $plural }}";
+        let disabled = '';
+        if (row.active) {
+            disabled = 'disabled';
+        }        
+        let activateurl = `<a class="${btnclass} btn-secondary text-white ${disabled}" href="${baseurl}/${data}/activate" title="Set as Active"><i class="fa fa-marker"></i></a> `;
         let viewurl = `<a class="${btnclass} btn-info text-white" href="${baseurl}/${data}" title="View"><i class="fa fa-eye"></i></a> `;
         let editurl = `<a class="${btnclass} btn-primary" href="${baseurl}/${data}/edit" title="Edit"><i class="fa fa-edit"></i></a> `;
         let delurl = `<form id="del-form-${data}" method="POST" action="${baseurl}/${data}" style="display: inline;">
@@ -88,7 +98,7 @@ elections-table
             {{ csrf_field() }}
             <a href="#" class="${btnclass} btn-danger" title="Delete" onclick="if (confirm('Are your sure?')) { document.querySelector('#del-form-${data}').submit(); }"><i class="fa fa-trash-alt"></i></a>
         </form>`;
-        return viewurl + editurl + delurl;
+        return activateurl + viewurl + editurl + delurl;
     },
     className: "text-center"
 }
