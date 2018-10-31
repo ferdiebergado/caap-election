@@ -7,11 +7,13 @@
     $plural = str_plural($model);
 @endphp
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} {{ ucfirst($model) }}</div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-1">                    
+            {{ ucfirst(explode('.', Route::currentRouteName())[1]) }} {{ ucfirst($model) }}</div>
+        </h5>        
+        <div class="container">
+            <div class="row">
                 
                 <div class="card-body">
                     <form method="POST" action="{{ $route }}">

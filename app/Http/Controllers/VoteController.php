@@ -11,6 +11,8 @@ use App\Election;
 use App\Voter;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use App\Candidate;
+use App\Position;
 
 class VoteController extends Controller
 {
@@ -77,9 +79,14 @@ class VoteController extends Controller
      */
     public function create()
     {
-        $vote = new $this->model();
+        $positions = Position::with([
+            'election' => function ($q) {
+                $q->where('active', true);
+            },
+            'candidates.voter'
+        ])->get(['id', 'name']);
         $route = route($this->plural . ".store");
-        return view($this->modelstr . ".partial", compact($this->modelstr, 'route'));
+        return view($this->modelstr . ".partial", compact('route', 'positions'));
     }
 
     /**

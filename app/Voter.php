@@ -6,6 +6,7 @@ use App\Vote;
 use App\BaseModel;
 use App\Office;
 use App\Candidate;
+use App\Election;
 
 class Voter extends BaseModel
 {
@@ -64,5 +65,10 @@ class Voter extends BaseModel
     public function candidates()
     {
         return $this->hasMany(Candidate::class);
+    }
+
+    public function election()
+    {
+        return $this->belongsTo(Election::class);
     }
 }

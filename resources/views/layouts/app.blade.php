@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class="d-inline-block align-center" src="{{ asset('img/caap.png') }}" width="48" height="30" alt="caap logo">                    
@@ -102,9 +102,18 @@
         <main class="py-4">
             @include('alert')
             @unless (Route::is('home'))                
-            <p class="lead">
-                <h5>{{ optional($active_election)->title }}</h5>
-            </p>
+            <div class="container">
+                <div class="row">     
+                    <div class="col-8">
+                        <p class="lead">
+                            <h5>{{ optional($active_election)->title }}</h5>
+                        </p>
+                    </div>           
+                    <div class="col-4">
+                        @include('breadcrumbs')
+                    </div>   
+                </div>
+            </div>
             @endunless
             @yield('content')
         </main>

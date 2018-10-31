@@ -1,17 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">{{ ucfirst(explode('.', Route::currentRouteName())[1]) }} Election</div>
-                
+
+@php
+    $model = 'election';
+    $plural = str_plural($model);
+@endphp
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-1">                    
+            {{ ucfirst(explode('.', Route::currentRouteName())[1]) }} {{ ucfirst($model) }}</div>
+        </h5>        
+        <div class="container">
+            <div class="row">                
                 <div class="card-body">
                     <form method="POST" action="{{ $route }}">
                         @csrf
                         
-                        @if (Route::is('elections.edit'))
+                        @if (Route::is("$plural.edit"))
                         {{ method_field('PUT') }}                            
                         @endif
                         

@@ -1,9 +1,6 @@
 // Fonts
 // @import url("https://fonts.googleapis.com/css?family=Nunito");
 @import "~nunito-fontface/css/nunito/sass/nunito-fontface-regular.scss";
-// @import "~roboto-fontface/css/roboto/sass/roboto-fontface.scss";
-
-// $font-family: "nunito-Regular";
 
 // Variables
 @import "variables";
@@ -13,16 +10,8 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "~bootswatch/dist/materia/bootswatch";
 
-.navbar-laravel {
-    // background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-// body {
-//     font-family: "nunito-Regular";
-// }
-
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~@fortawesome/fontawesome-free/css/solid.min.css";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
 // Datatables
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
@@ -33,24 +22,29 @@
 
 @import "~bootstrap4c-custom-switch/dist/css/component-custom-switch.min.css";
 
-// .breadcrumb {
-//     background: $body-bg;
-//     border: 0px solid rgba(245, 245, 245, 1);
-//     border-radius: 0px;
-// }
-// .breadcrumb li {
-//     font-size: 12px;
-// }
-// .breadcrumb a {
-//     color: rgba(66, 139, 202, 1);
-// }
-// .breadcrumb a:hover {
-//     color: rgba(42, 100, 150, 1);
-// }
-// .breadcrumb > .active {
-//     color: rgba(153, 153, 153, 1);
-// }
-// .breadcrumb > li + li:before {
-//     color: rgba(204, 204, 204, 1);
-//     // content: "\002F\00a0";
-// }
+.breadcrumb {
+    background: $body-bg;
+    border: 0px solid rgba(245, 245, 245, 1);
+    border-radius: 0px;
+}
+.breadcrumb li {
+    font-size: 12px;
+}
+.breadcrumb a {
+    color: rgba(66, 139, 202, 1);
+}
+.breadcrumb a:hover {
+    color: rgba(42, 100, 150, 1);
+}
+.breadcrumb > .active {
+    color: rgba(153, 153, 153, 1);
+}
+.breadcrumb > li + li:before {
+    color: rgba(204, 204, 204, 1);
+    // content: "\002F\00a0";
+}
+
+.navbar-laravel {
+    // background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}

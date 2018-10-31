@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-running"></i> {{ ucfirst($plural) }}</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-chair"></i> {{ ucfirst($plural) }}</h5>
                 </div>
                 <div class="col-6">
                     <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route("$plural.create") }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
@@ -67,7 +67,7 @@ $url = route($route, $params ?? array())
 
 { targets: 0,
     render: function (data, type, row) {
-        return `<span class=\"badge badge-success\">${data}</span>`;
+        return `<span class="badge badge-secondary">${data}</span>`;
     }
 },
 

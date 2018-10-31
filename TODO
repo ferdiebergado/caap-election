@@ -1,6 +1,11 @@
 1. https (OK)
-2. self-service voting
-3. reports
 4. set as active in elections (OK)
-5. revise voting form (include all positions with candidates)
-6. 
+8. change partial layout to match index layout (OK)
+5. revise voting form (include all positions with candidates) (partial)
+2. self-service voting
+3. printable reports (pdf)
+6. remove election on candidates form (set active election as default election)
+7. add another voter viewcomposer where voted attribute is not filtered
+9. fix breadcrumbs
+10. change home to dashboard 
+11. change icon font

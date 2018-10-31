@@ -2,7 +2,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <i class="fa fa-home"></i>
-            <a href="{{ route('home')}}">Home</a>
+            <a href="{{ route('home')}}">Home </a>
             <i class="fa fa-angle-right"></i>
         </li>
         @for($i = 0; $i <= count(Request::segments()); $i++) 
