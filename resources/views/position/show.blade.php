@@ -47,15 +47,15 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Office</th>
-                                            <th>Position</th>
+                                            <th>Election</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($position->candidates as $Candidate)
+                                        @forelse ($position->candidates as $candidate)
                                         <tr>
                                             <td scope="row">{{ $candidate->voter->fullname }}</td>
                                             <td scope="row">{{ $candidate->voter->office->name }}</td>
-                                            <td scope="row">{{ $candidate->position->name }}</td>
+                                            <td scope="row">{{ $candidate->election->title }}</td>
                                         </tr>                                          
                                         @empty
                                         <tr>

@@ -8,6 +8,8 @@ use App\Helpers\RequestCriteria;
 use App\Helpers\DataTableHelper;
 use App\Candidate;
 use App\Voter;
+use App\Election;
+use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
@@ -89,13 +91,27 @@ class CandidateController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'election_id' => 'required|integer',
             'voter_id' => 'required|integer',
             'position_id' => 'required|integer'
         ]);
 
-        $data = $this->model::create($request->all());
-        Voter::find($request->position_id)->update(['candidate' => true]);
+        DB::beginTransaction();
+
+        try {
+            $id = Election::where('active', true)->first()->value('id');
+            if (isset($id)) {
+                $request->merge(['election_id' => $id]);
+                $data = $this->model::create($request->all());
+                Voter::where('id', $request->voter_id)->update(['candidate' => true]);
+            } else {
+                throw new Exception('No active election.  Please set an active election on the Election Menu.');
+            }
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage())->withInput();
+        }
+
+        DB::commit();
 
         $route = $this->indexroute;
         session()->flash('status', 'New Candidate successfully recorded in the system.');

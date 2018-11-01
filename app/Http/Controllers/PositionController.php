@@ -104,7 +104,8 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        $position = $this->model::with(['candidates'])->find($position->id);
+        $position = $this->model::with('candidates')->find($position->id);
+
         return view($this->modelstr . ".show", compact('position'));
     }
 

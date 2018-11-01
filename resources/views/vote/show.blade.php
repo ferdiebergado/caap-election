@@ -12,10 +12,9 @@
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1">{{ ucfirst($model) }}</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="s7 s7-pen"></i> {{ ucfirst($model) }}</h5>
                 </div>
                 <div class="col-6">
-                    <span class="float-right"><a name="add" id="add" class="btn btn-primary" href="{{ route("$plural.edit", ['position' => $position->id]) }}" role="button"><i class="fa fa-edit"></i> Edit</a></span>
                     <span class="float-right"><a name="add" id="add" class="btn btn-secondary mr-2" href="{{ route("$plural.index") }}" role="button"><i class="fa fa-list"></i> List</a></span> 
                 </div>
             </div>

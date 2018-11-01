@@ -14,7 +14,33 @@ class OfficeController extends Controller
     use RequestCriteria;
     use DataTableHelper;
 
-    protected $indexroute = 'offices.index';
+    protected $namespace = "App\\";
+    protected $modelstr = 'office';
+    protected $plural;
+    protected $indexroute;
+    protected $model;
+
+    public function __construct()
+    {
+        $this->pluralizeModel();
+        $this->setIndexRoute();
+        $this->setModel();
+    }
+
+    private function setModel()
+    {
+        $this->model = $this->namespace . ucfirst($this->modelstr);
+    }
+
+    private function pluralizeModel()
+    {
+        $this->plural = str_plural($this->modelstr);
+    }
+
+    private function setIndexRoute()
+    {
+        $this->indexroute = $this->plural . ".index";
+    }
 
     /**
      * Display a listing of the resource.
@@ -78,6 +104,15 @@ class OfficeController extends Controller
      */
     public function show(Office $office)
     {
+        $office = $this->model::with([
+            'voters' => function ($q) {
+                $q
+                    ->orderBy('lastname')
+                    ->orderBy('firstname')
+                    ->orderBy('middlename');
+            }
+        ])->find($office->id);
+
         return view('office.show', compact('office'));
     }
 

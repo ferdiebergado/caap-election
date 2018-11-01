@@ -62,8 +62,8 @@
                                         <tr>
                                             <td scope="row">{{ $vote->election->title }}</td>
                                             <td scope="row">{{ $vote->election->date }}</td>
-                                            <td>{{ $vote->position }}</td>
-                                            <td>{{ $vote->candidate }}</td>
+                                            <td>{{ $vote->position->name }}</td>
+                                            <td>{{ $vote->candidate->voter->fullname }}</td>
                                         </tr>                                          
                                         @empty
                                         <tr>

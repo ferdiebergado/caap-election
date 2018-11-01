@@ -49,27 +49,27 @@
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
+                            <a class="nav-link" href="{{ route('home') }}"><i class="s7 s7-home"></i> Home</a>
                         </li>                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-users"></i> Voters
+                                <i class="s7 s7-users"></i> Voters
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="fa fa-building"></i> Offices</a>
-                                <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="fa fa-users"></i> Voters</a>
+                                <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="s7 s7-users"></i> Voters</a>
+                                <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="s7 s7-box1"></i> Offices</a>
                             </div>
                         </li>               
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-calendar-alt"></i> Elections
+                                <i class="s7 s7-news-paper"></i> Elections
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('elections.index') }}"><i class="fa fa-calendar-alt"></i> Elections</a>
-                                <a class="dropdown-item" href="{{ route('positions.index') }}"><i class="fa fa-chair"></i> Positions</a>          
-                                <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="fa fa-running"></i> Candidates</a>
+                                <a class="dropdown-item" href="{{ route('elections.index') }}"><i class="s7 s7-news-paper"></i> Elections</a>
+                                <a class="dropdown-item" href="{{ route('positions.index') }}"><i class="s7 s7-ribbon"></i> Positions</a>          
+                                <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="s7 s7-user"></i> Candidates</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('votes.index') }}"><i class="fa fa-pen-nib"></i> Votes</a>
+                                <a class="dropdown-item" href="{{ route('votes.index') }}"><i class="s7 s7-pen"></i> Votes</a>
                             </div>
                         </li>                                                     
                         
@@ -79,12 +79,12 @@
                             </a>
                             
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item">Profile</a>
+                                <a class="dropdown-item"><i class="s7 s7-settings"></i> Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                <i class="s7 s7-left-arrow"></i> {{ __('Logout') }}
                             </a>
                             
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -109,9 +109,11 @@
                             <h5>{{ optional($active_election)->title }}</h5>
                         </p>
                     </div>           
-                    <div class="col-4">
+                    @auth                        
+                    <div class="col-4">                        
                         @include('breadcrumbs')
                     </div>   
+                    @endauth
                 </div>
             </div>
             @endunless

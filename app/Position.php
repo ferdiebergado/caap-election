@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\BaseModel;
 use App\Vote;
 use App\Election;
+use App\Candidate;
 
 class Position extends BaseModel
 {

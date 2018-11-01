@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $model = 'office';
-    $plural = str_plural($model);
+$model = 'office';
+$plural = str_plural($model);
 @endphp
 
 <div class="card">
@@ -48,6 +48,8 @@
                                             <th>Lastname</th>
                                             <th>Firstname</th>
                                             <th>Middlename</th>
+                                            <th>Voted</th>
+                                            <th>Candidate</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,6 +58,16 @@
                                             <td scope="row">{{ $voter->lastname }}</td>
                                             <td scope="row">{{ $voter->firstname }}</td>
                                             <td scope="row">{{ $voter->middlename }}</td>
+                                            <td scope="row">
+                                                @if ($voter->voted)
+                                                <span class="badge badge-success"><i class="fa fa-check"></i></span>                                  
+                                                @endif
+                                            </td>
+                                            <td scope="row">
+                                                @if ($voter->candidate)
+                                                <span class="badge badge-success"><i class="fa fa-check"></i></span>                                           
+                                                @endif
+                                            </td>
                                         </tr>                                          
                                         @empty
                                         <tr>

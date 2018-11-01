@@ -24,19 +24,6 @@
                         @endif                                               
                         
                         <div class="form-group row">
-                            <label for="election_id" class="col-md-4 col-form-label text-md-right">Election</label>
-                            
-                            <div class="col-md-6">
-                                @component('select', ['datasource' => $elections, 'value' => old('election_id', optional($candidate)->election_id)])
-                                @slot('name')
-                                election_id
-                                @endslot       
-                                required                   
-                                @endcomponent                            
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="voter_id" class="col-md-4 col-form-label text-md-right">Name</label>
                             
                             <div class="col-md-6">

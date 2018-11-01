@@ -5,7 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Voter;
 use \Illuminate\View\View;
 
-class VoterComposer
+class CandidateVoterComposer
 {
     /**
      * The Voter model.
@@ -34,6 +34,6 @@ class VoterComposer
      */
     public function compose(View $view)
     {
-        $view->with('voters', $this->voter->where('voted', false)->orderBy('lastname')->orderBy('firstname')->get());
+        $view->with('voters', $this->voter->where('candidate', false)->orderBy('lastname')->orderBy('firstname')->get());
     }
 }

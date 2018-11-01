@@ -34,9 +34,14 @@ class CandidateComposer
      */
     public function compose(View $view)
     {
-        $collection = $this->candidate->with(['voter' => function ($q) {
-            $q->orderBy('lastname')->orderBy('firstname')->orderBy('middlename');
-        }])->get();
+        $collection = $this->candidate->with([
+            'election' => function ($q) {
+                $q->latest();
+            },
+            'voter' => function ($q) {
+                $q->orderBy('lastname')->orderBy('firstname')->orderBy('middlename');
+            }
+        ])->get();
         $candidates = $collection->map(function ($item, $key) {
             return $item->voter;
         });

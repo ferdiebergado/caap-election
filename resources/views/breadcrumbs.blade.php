@@ -1,7 +1,7 @@
   <nav class="float-right" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <i class="fa fa-home"></i>
+            {{-- <i class="s7 s7-home"></i> --}}
             <a href="{{ route('home')}}">Home </a>
             <i class="fa fa-angle-right"></i>
         </li>

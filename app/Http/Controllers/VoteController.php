@@ -55,9 +55,17 @@ class VoteController extends Controller
      */
     public function index()
     {
-        $data = $this->model::with(['voter', 'position', 'candidate', 'election'])->get();
+        $relations = [
+            'voter',
+            'position',
+            'candidate.voter',
+            'election'
+        ];
+
+        $data = $this->model::with($relations)->get();
+
         if (request()->has('length')) {
-            $model = $this->datatablePaginate($this->model, ['voter', 'position', 'candidate.voter', 'election']);
+            $model = $this->datatablePaginate($this->model, $relations);
             $draw = $model['draw'];
             $data = $model['data'];
         }
@@ -79,12 +87,7 @@ class VoteController extends Controller
      */
     public function create()
     {
-        $positions = Position::with([
-            'election' => function ($q) {
-                $q->where('active', true);
-            },
-            'candidates.voter'
-        ])->get(['id', 'name']);
+        $positions = $this->getPositions();
         $route = route($this->plural . ".store");
         return view($this->modelstr . ".partial", compact('route', 'positions'));
     }
@@ -99,17 +102,19 @@ class VoteController extends Controller
     {
         $this->validate($request, [
             'voter_id' => 'required|integer',
-            'position_id' => 'required|integer',
-            'candidate_id' => 'required|integer',
+            'candidate_id' => 'required|array',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $election = Election::where('active', true)->first();
-            if (isset($election)) {
-                $request->merge(['election_id' => $election->id]);
-                $data = $this->model::create($request->all());
+            $id = Election::where('active', true)->first()->value('id');
+            if (isset($id)) {
+                $request->merge(['election_id' => $id]);
+                foreach ($request->candidate_id as $key => $value) {
+                    $request->merge(['position_id' => $key, 'candidate_id' => $value]);
+                    $data = $this->model::create($request->all());
+                }
                 Voter::where('id', $request->voter_id)->update(['voted' => true]);
             } else {
                 throw new Exception('No active election.  Please set an active election on the Election Menu.');
@@ -134,7 +139,7 @@ class VoteController extends Controller
      */
     public function show(Vote $vote)
     {
-        $vote = $this->model::with(['candidates'])->find($vote->id);
+        $vote = $this->model::with(['candidate'])->find($vote->id);
         return view($this->modelstr . ".show", compact('vote'));
     }
 
@@ -146,8 +151,9 @@ class VoteController extends Controller
      */
     public function edit(Vote $vote)
     {
+        $position = $this->getPositions();
         $route = route($this->plural . ".update", compact('vote'));
-        return view($this->modelstr . ".partial", compact('vote', 'route'));
+        return view($this->modelstr . ".partial", compact('vote', 'route', 'positions'));
     }
 
     /**
@@ -185,5 +191,15 @@ class VoteController extends Controller
         $vote->delete();
         session()->flash('status', 'Vote information successfully deleted.');
         return redirect()->back();
+    }
+
+    private function getPositions()
+    {
+        return Position::has('candidates')->with([
+            'election' => function ($q) {
+                $q->where('active', true);
+            },
+            'candidates.voter'
+        ])->orderBy('name')->get();
     }
 }

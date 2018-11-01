@@ -23,11 +23,11 @@ class ViewComposerServiceProvider extends ServiceProvider
             'App\Http\ViewComposers\ElectionComposer'
         );
         View::composer(
-            ['candidate.partial', 'vote.partial'],
+            ['vote.partial'],
             'App\Http\ViewComposers\VoterComposer'
         );
         View::composer(
-            ['candidate.partial', 'vote.partial'],
+            ['candidate.partial'],
             'App\Http\ViewComposers\PositionComposer'
         );
         View::composer(
@@ -37,6 +37,10 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(
             'layouts.app',
             'App\Http\ViewComposers\ActiveElectionComposer'
+        );
+        View::composer(
+            'candidate.partial',
+            'App\Http\ViewComposers\CandidateVoterComposer'
         );
     }
 

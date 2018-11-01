@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.4.2",
+        "@icon/stroke-7": "^1.2.0-2",
         "bootstrap4c-custom-switch": "^1.0.11",
         "datatables.net": "^1.10.19",
         "datatables.net-bs4": "^1.10.19",

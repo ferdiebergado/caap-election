@@ -4,6 +4,7 @@ namespace App;
 
 use App\Voter;
 use App\BaseModel;
+use App\Candidate;
 
 class Office extends BaseModel
 {
@@ -18,5 +19,10 @@ class Office extends BaseModel
     public function voters()
     {
         return $this->hasMany(Voter::class);
+    }
+
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
     }
 }

@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-users"></i> {{ ucfirst($plural) }}</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="s7 s7-users"></i> {{ ucfirst($plural) }}</h5>
                 </div>
                 <div class="col-6">
                     <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route("$plural.create") }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>
@@ -50,7 +50,7 @@ $url = route($route, $params ?? array())
 @endslot
 
 @slot('ellipsiscol')
-[4]
+[1,2,3,4]
 @endslot
 
 @slot('columns')
@@ -58,8 +58,9 @@ $url = route($route, $params ?? array())
 { name: 'lastname', title: 'Lastname', data: 'lastname', width: '15%' },
 { name: 'firstname', title: 'Firstname', data: 'firstname', width: '15%' },
 { name: 'middlename', title: 'Middlename', data: 'middlename', width: '15%' },
-{ name: 'office.name', title: 'Office', data: 'office.name', width: '20%' },
-{ name: 'voted', title: 'Voted', data: 'voted', width: '10%' },
+{ name: 'office.name', title: 'Office', data: 'office.name', width: '15%' },
+{ name: 'voted', title: 'Voted', data: 'voted', width: '5%' },
+{ name: 'candidate', title: 'Candidate', data: 'candidate', width: '10%' },
 { title: 'Task(s)', data: 'id', searchable: false, orderable: false, width: '20%' }
 @endslot
 
@@ -79,6 +80,15 @@ $url = route($route, $params ?? array())
 },
 
 { targets: 6,
+    render: function (data, type, row) {
+        if (data) {
+            return `<span class="badge badge-success"><i class="fa fa-check"></i></span>`;
+        }
+        return null;
+    }
+},
+
+{ targets: 7,
     render: function(data, type, row) {
         const btnclass = "btn btn-sm btn-flat";
         const baseurl = "/{{ $plural }}";

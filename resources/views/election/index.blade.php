@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">            
                 <div class="col-6">
-                    <h5 class="card-title mt-2 mb-1"><i class="fa fa-calendar-alt"></i> {{ ucfirst($plural) }}</h5>
+                    <h5 class="card-title mt-2 mb-1"><i class="s7 s7-news-paper"></i> {{ ucfirst($plural) }}</h5>
                 </div>
                 <div class="col-6">
                     <span class="float-right"><a name="add" id="add" class="btn btn-success" href="{{ route("$plural.create") }}" role="button"><i class="fa fa-plus-circle"></i> Add</a></span>

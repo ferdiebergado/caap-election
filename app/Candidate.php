@@ -6,13 +6,14 @@ use App\Voter;
 use App\Election;
 use App\BaseModel;
 use App\Position;
+use App\Office;
 
 class Candidate extends BaseModel
 {
     protected $fillable = [
-        'election_id',
         'voter_id',
-        'position_id'
+        'position_id',
+        'election_id'
     ];
 
     protected $searchable = [];
@@ -35,5 +36,10 @@ class Candidate extends BaseModel
     public function votes()
     {
         return $this->hasMany(Vote::class);
+    }
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
     }
 }
