@@ -1,16 +1,21 @@
 1. https (OK)
 4. set as active in elections (OK)
 8. change partial layout to match index layout (OK)
+11. change icon font (OK)
 6. remove election on candidates form (set active election as default election) (OK)
 7. add another voter viewcomposer where voted attribute is not filtered (OK)
 5. revise voting form (include all positions with candidates) (OK)
+18. fix candidates partial name select (OK)
+
+PENDING
 2. self-service voting
 3. printable reports
 9. fix breadcrumbs
 10. change home to dashboard 
-11. change icon font (OK)
 12. foreign keys
 13. exceptions
 14. searchable with relationships
-15. charts
+15. charts (partial)
 16. revise vote index (should be voter, office, column for positions, election, date )
+17. add text input length
+19. 

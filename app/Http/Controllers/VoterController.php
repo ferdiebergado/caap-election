@@ -141,4 +141,9 @@ class VoterController extends Controller
         $route = route('votes.store');
         return view('vote.partial', compact('vote', 'route'));
     }
+
+    public function selfservice()
+    {
+        return view('voter.selfservice');
+    }
 }

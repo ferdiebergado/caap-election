@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Candidate;
 use App\Position;
+use App\Charts\PositionChart;
+use App\Helpers\RGBColorFactory;
 
 class VoteController extends Controller
 {
@@ -201,5 +203,33 @@ class VoteController extends Controller
             },
             'candidates.voter'
         ])->orderBy('name')->get();
+    }
+
+    public function reports()
+    {
+        $electionid = Election::where('active', true)->first()->value('id');
+        $positions = Position::with(['election' => function ($q) use ($electionid) {
+            $q->where('id', $electionid);
+        }])->get();
+        $candidates = Candidate::with(['voter'])->where('election_id', $electionid)->get();
+        foreach ($positions as $position) {
+            $id = $position->id;
+            $positionchart[$id] = new PositionChart();
+            $data = collect([]);
+            $labels = $colors = $bgcolors = [];
+            foreach ($position->candidates as $candidate) {
+                $labels[] = $candidate->voter->fullname;
+                array_push($colors, (new RGBColorFactory())->generate());
+                array_push($bgcolors, (new RGBColorFactory())->generate(true));
+                $data->push(Vote::where('candidate_id', $candidate->id)->where('position_id', $id)->count());
+            }
+            $positionchart[$id]->labels($labels);
+            $positionchart[$id]->dataset("Count of $position->name", 'bar', $data)->color($bgcolors)->backgroundColor($colors);
+            $positionchart[$id]->title($position->name, 20);
+            $positionchart[$id]->displayLegend(false);
+            $positionchart[$id]->formatOptions();
+            $positionchart[$id]->formatDatasets();
+        }
+        return view('reports', compact('positionchart'));
     }
 }

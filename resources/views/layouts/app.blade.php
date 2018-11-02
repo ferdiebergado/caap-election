@@ -58,6 +58,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('voters.index') }}"><i class="s7 s7-users"></i> Voters</a>
                                 <a class="dropdown-item" href="{{ route('offices.index') }}"><i class="s7 s7-box1"></i> Offices</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('voters.selfservice') }}"><i class="s7 s7-pen"></i> Self Service</a>                                
                             </div>
                         </li>               
                         <li class="nav-item dropdown">
@@ -70,6 +72,8 @@
                                 <a class="dropdown-item" href="{{ route('candidates.index') }}"><i class="s7 s7-user"></i> Candidates</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('votes.index') }}"><i class="s7 s7-pen"></i> Votes</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('votes.reports') }}"><i class="s7 s7-graph"></i> Reports</a>
                             </div>
                         </li>                                                     
                         

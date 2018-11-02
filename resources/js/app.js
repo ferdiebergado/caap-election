@@ -17,7 +17,7 @@ const flatpickr = require("flatpickr");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component("select2", require("./components/Select2.vue"));
+// Vue.component("chart", require("./components/Chart.vue"));
 
 const app = new Vue({
     el: "#app"

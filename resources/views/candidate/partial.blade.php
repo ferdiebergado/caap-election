@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $model = 'candidate';
-    $plural = str_plural($model);
+$model = 'candidate';
+$plural = str_plural($model);
 @endphp
 
 <div class="card">
@@ -20,47 +20,59 @@
                         @csrf
                         
                         @if (Route::is("$plural.edit"))
-                        {{ method_field('PUT') }}                            
-                        @endif                                               
+                        {{ method_field('PUT') }}               
                         
                         <div class="form-group row">
-                            <label for="voter_id" class="col-md-4 col-form-label text-md-right">Name</label>
                             
+                            <label for="staticFullname" class="col-md-4 col-form-label text-md-right">Full Name</label>
                             <div class="col-md-6">
-                                @component('select', ['datasource' => $voters, 'value' => old('voter_id', optional($candidate)->voter_id), 'field' => 'fullname'])
-                                @slot('name')
-                                voter_id
-                                @endslot
-                                required            
-                                @endcomponent                            
+                                <input type="text" readonly class="form-control-plaintext" id="staticFullname" value="{{ optional($candidate->voter)->fullname }}">
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="position_id" class="col-md-4 col-form-label text-md-right">Position</label>
                             
-                            <div class="col-md-6">
-                                @component('select', ['datasource' => $positions, 'value' => old('position_id', optional($candidate)->position_id)])
-                                @slot('name')
-                                position_id
-                                @endslot
-                                required            
-                                @endcomponent                            
+                            @else
+                            
+                            <div class="form-group row">
+                                
+                                <label for="voter_id" class="col-md-4 col-form-label text-md-right">Name</label>
+                                
+                                <div class="col-md-6">
+                                    @component('select', ['datasource' => $voters, 'value' => old('voter_id', optional($candidate)->voter_id), 'field' => 'fullname'])
+                                    @slot('name')
+                                    voter_id
+                                    @endslot
+                                    required            
+                                    @endcomponent                            
+                                </div>
+                                
+                                @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary float-right">
-                                    <i class="fa fa-save"></i> SAVE
-                                </button>
-                                <a class="btn float-right" href="javascript:void();" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</a>                                
+                            
+                            <div class="form-group row">
+                                <label for="position_id" class="col-md-4 col-form-label text-md-right">Position</label>
+                                
+                                <div class="col-md-6">
+                                    @component('select', ['datasource' => $positions, 'value' => old('position_id', optional($candidate)->position_id)])
+                                    @slot('name')
+                                    position_id
+                                    @endslot
+                                    required            
+                                    @endcomponent                            
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary float-right">
+                                        <i class="fa fa-save"></i> SAVE
+                                    </button>
+                                    <a class="btn float-right" href="javascript:void();" onclick="window.history.back();"><i class="fa fa-arrow-left"></i> Back</a>                                
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
+    

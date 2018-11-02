@@ -172,6 +172,7 @@ class CandidateController extends Controller
      */
     public function destroy(Candidate $candidate)
     {
+        Voter::where('id', $candidate->voter_id)->update(['candidate' => false]);
         $candidate->delete();
         session()->flash('status', 'Candidate information successfully deleted.');
         return redirect()->back();

@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/plugins.js": "/js/plugins.js",
-    "/css/nunito-fontface.css": "/css/nunito-fontface.css"
+    "/css/nunito-fontface.css": "/css/nunito-fontface.css",
+    "/js/Chart.min.js": "/js/Chart.min.js"
 }

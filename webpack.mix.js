@@ -43,6 +43,7 @@ mix.js("resources/js/app.js", "public/js")
     )
     .copyDirectory("resources/img", "public/img")
     .copy("resources/css/nunito-fontface.css", "public/css")
+    .copy("node_modules/chart.js/dist/Chart.min.js", "public/js")
     .sass("resources/sass/app.scss", "public/css");
 
 if (mix.inProduction()) {

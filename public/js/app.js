@@ -29208,7 +29208,7 @@ var flatpickr = __webpack_require__(39);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component("select2", require("./components/Select2.vue"));
+// Vue.component("chart", require("./components/Chart.vue"));
 
 var app = new Vue({
   el: "#app"
