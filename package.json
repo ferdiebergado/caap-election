@@ -27,7 +27,7 @@
         "chart.js": "^2.7.3",
         "datatables.net": "^1.10.19",
         "datatables.net-bs4": "^1.10.19",
-        "flatpickr": "^4.5.2",
+        "flatpickr": "^4.6.3",
         "jquery-highlight": "^3.4.0",
         "nunito-fontface": "^0.7.3"
     }
