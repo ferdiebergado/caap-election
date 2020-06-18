@@ -21,7 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.4.2",
+        "@fortawesome/fontawesome-free": "^5.13.0",
         "@icon/stroke-7": "^1.2.0-2",
         "bootstrap4c-custom-switch": "^1.0.11",
         "chart.js": "^2.7.3",
